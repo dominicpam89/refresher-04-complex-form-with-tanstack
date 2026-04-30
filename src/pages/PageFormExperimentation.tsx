@@ -3,6 +3,7 @@ import { useSearchParams } from 'react-router';
 import Layout from '@/features/form-experimentation/components/Layout';
 import TabButtons from '@/features/form-experimentation/components/TabButtonts';
 import { tabs } from '@/features/form-experimentation/utils';
+import LoginForm from '@/features/form-experimentation/components/LoginForm';
 
 export default function PageFormExperimentation() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -15,6 +16,7 @@ export default function PageFormExperimentation() {
   return (
     <Layout>
       <TabButtons />
+      {tab === 'login' && <LoginForm />}
     </Layout>
   );
 }

@@ -9,7 +9,10 @@ export default function Layout({ children, twClasses = '' }: Props & PropsWithCh
   return (
     <div
       aria-label="page-form-experimentation-layout"
-      className={cn('min-h-screen max-w-lg w-full mx-auto pt-12 flex flex-col gap-6', twClasses)}
+      className={cn(
+        'min-h-screen max-w-lg min-w-sm mx-auto pt-12 flex flex-col gap-6 p-8 lg:p-0',
+        twClasses
+      )}
     >
       {children}
     </div>
