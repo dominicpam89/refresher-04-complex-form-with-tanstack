@@ -1,5 +1,5 @@
 import { useSearchParams } from 'react-router';
-import type { BasicFormTabType } from '@/features/demo/utils/layout-tab.utils';
+import type { BasicFormTabType } from '@/features/basic-form/utils';
 import { Button } from '@/components/ui/button';
 
 interface TabButtonProps {

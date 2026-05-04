@@ -4,7 +4,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
 import { useForm } from 'react-hook-form';
 import type { BasicFormType } from '@/types/form-type';
-import { basicFormRules } from '@/features/demo/hook-form-rules/basic-form';
+import { basicFormRules } from '@/features/basic-form/hook-form-rules';
 
 export default function BasicForm() {
   const {

@@ -1,5 +1,5 @@
-import BasicFormZod from '@/features/demo/components/BasicFormZod';
-import Layout from '@/features/demo/components/Layout';
+import BasicFormZod from '@/features/basic-form/components/BasicFormZod';
+import Layout from '@/features/basic-form/components/Layout';
 
 export default function PageFormBasic() {
   return (

@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useSearchParams } from 'react-router';
-import { basicFormTabs } from '@/features/demo/utils/layout-tab.utils';
+import { basicFormTabs } from '@/features/basic-form/utils';
 import TabButton from './LayoutTabButton';
 
 export default function LayoutTabs() {

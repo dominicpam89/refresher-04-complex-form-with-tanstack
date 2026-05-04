@@ -3,12 +3,12 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
 import { useForm } from 'react-hook-form';
-import { basicFormLength } from '@/features/demo/form-schema/basic-form';
+import { basicFormLength } from '@/features/basic-form/schema';
 import {
   basicFormSchema,
   defaultBasicFormValues as defaultValues,
   type BasicFormSchema,
-} from '@/features/demo/form-schema/basic-form';
+} from '@/features/basic-form/schema';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 export default function BasicFormZod() {
