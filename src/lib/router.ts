@@ -1,13 +1,18 @@
 import LayoutCommon from '@/pages/LayoutCommon';
-import PageFormExperimentation from '@/pages/PageFormExperimentation';
 import PageHome from '@/pages/PageHome';
 import { createBrowserRouter } from 'react-router';
+import PageForm from '@/pages/PageForm';
+import PageFormExperimentation from '@/pages/PageFormExperimentation';
+import PageFormBasic from '@/pages/PageFormBasic';
 
 export const router = createBrowserRouter([
   { path: '/', Component: PageHome },
   {
-    path: '/form-experimentation',
+    path: '/demo',
     Component: LayoutCommon,
-    children: [{ index: true, Component: PageFormExperimentation }],
+    children: [
+      { index: true, Component: PageForm },
+      { path: 'basic', Component: PageFormBasic },
+    ],
   },
 ]);
