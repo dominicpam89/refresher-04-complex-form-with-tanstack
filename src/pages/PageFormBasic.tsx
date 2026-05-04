@@ -1,4 +1,4 @@
-import BasicForm from '@/features/demo/components/BasicForm';
+import BasicFormZod from '@/features/demo/components/BasicFormZod';
 import Layout from '@/features/demo/components/Layout';
 
 export default function PageFormBasic() {
@@ -9,7 +9,7 @@ export default function PageFormBasic() {
         description: 'This is a basic form with simple validation.',
       }}
     >
-      <BasicForm />
+      <BasicFormZod />
     </Layout>
   );
 }
