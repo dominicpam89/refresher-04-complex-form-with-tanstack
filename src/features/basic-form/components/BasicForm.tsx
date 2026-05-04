@@ -5,26 +5,26 @@ import { Button } from '@/components/ui/button';
 import { useForm } from 'react-hook-form';
 import type { BasicFormType } from '@/types/form-type';
 import { basicFormRules } from '@/features/basic-form/hook-form-rules';
+import { useCreateTodo } from '@/features/basic-form/hooks/createTodo';
+import CharacterCount from './CharacterCount';
 
 export default function BasicForm() {
   const {
     register,
     handleSubmit,
+    control,
     formState: { errors },
     reset,
-    watch,
   } = useForm<BasicFormType>({
     mode: 'onBlur',
     reValidateMode: 'onChange',
   });
+  const { mutate, isPending } = useCreateTodo();
   const titleProps = register('title', basicFormRules.title());
   const descriptionProps = register('description', basicFormRules.description());
   const onSubmit = handleSubmit(({ title, description }) => {
-    console.log('Title:', title);
-    console.log('Description:', description);
+    mutate({ title, description });
   });
-  const valueTitle = watch('title');
-  const valueDescription = watch('description');
   return (
     <form className="w-full flex flex-col gap-4" onSubmit={onSubmit}>
       <Field>
@@ -35,10 +35,13 @@ export default function BasicForm() {
             placeholder="Title of Todo"
             maxLength={basicFormRules.attribute.title.max}
             {...titleProps}
+            disabled={isPending}
           />
-          <div className="absolute z-10 top-0 right-0 mr-2 mt-2 opacity-50">
-            {valueTitle?.length || 0}/{basicFormRules.attribute.title.max}
-          </div>
+          <CharacterCount<BasicFormType>
+            name="title"
+            control={control}
+            maxChar={basicFormRules.attribute.title.max}
+          />
         </div>
         {errors.title && <FieldError>{errors.title.message}</FieldError>}
       </Field>
@@ -50,18 +53,27 @@ export default function BasicForm() {
             placeholder="Description of todo"
             maxLength={basicFormRules.attribute.description.max}
             {...descriptionProps}
+            disabled={isPending}
           />
-          <div className="absolute z-10 top-0 right-0 mr-2 mt-2 opacity-50">
-            {valueDescription?.length || 0}/{basicFormRules.attribute.description.max}
-          </div>
+          <CharacterCount<BasicFormType>
+            name="description"
+            control={control}
+            maxChar={basicFormRules.attribute.description.max}
+          />
         </div>
         {errors.description && <FieldError>{errors.description.message}</FieldError>}
       </Field>
       <div aria-label="button-group" className="w-full flex items-center gap-2">
-        <Button type="reset" variant="outline" className="w-1/2" onClick={() => reset()}>
+        <Button
+          type="reset"
+          variant="outline"
+          className="w-1/2"
+          onClick={() => reset()}
+          disabled={isPending}
+        >
           Reset Field
         </Button>
-        <Button type="submit" className="w-1/2">
+        <Button type="submit" className="w-1/2" disabled={isPending}>
           Submit
         </Button>
       </div>
