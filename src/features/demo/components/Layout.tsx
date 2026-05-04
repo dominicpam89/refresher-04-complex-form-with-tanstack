@@ -8,6 +8,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
+import LayoutTabs from './LayoutTabs';
 
 interface Props {
   twClasses?: React.HTMLAttributes<HTMLDivElement>['className'];
@@ -35,6 +36,7 @@ export default function Layout({
         <CardHeader>
           <CardTitle>{title || 'Form'}</CardTitle>
           <CardDescription>{description || 'Please fill out the form below.'}</CardDescription>
+          <LayoutTabs />
         </CardHeader>
         <CardContent>{children}</CardContent>
         {footer && <CardFooter>{footer}</CardFooter>}
