@@ -3,11 +3,15 @@ import { Outlet } from 'react-router';
 export default function LayoutCommon() {
   return (
     <>
-      <header>Header</header>
+      <header>
+        <></>
+      </header>
       <main>
         <Outlet />
       </main>
-      <footer>Footer</footer>
+      <footer>
+        <></>
+      </footer>
     </>
   );
 }
