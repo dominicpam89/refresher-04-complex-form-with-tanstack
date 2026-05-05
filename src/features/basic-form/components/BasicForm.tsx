@@ -4,7 +4,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
 import { useForm } from 'react-hook-form';
 import type { BasicFormType } from '@/types/form-type';
-import { basicFormRules } from '@/features/basic-form/hook-form-rules';
+import { basicFormRules, defaultValues } from '@/features/basic-form/hook-form-rules';
 import { useCreateTodo } from '@/features/basic-form/hooks/createTodo';
 import CharacterCount from './CharacterCount';
 
@@ -16,6 +16,7 @@ export default function BasicForm() {
     formState: { errors },
     reset,
   } = useForm<BasicFormType>({
+    defaultValues,
     mode: 'onBlur',
     reValidateMode: 'onChange',
   });

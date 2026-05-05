@@ -19,8 +19,8 @@ export const useCreateTodo = () => {
     onError(error) {
       console.error(error.message);
     },
-    onSuccess() {
-      console.log('created todo');
+    onSuccess(data) {
+      console.log('created todo, data: ', data);
     },
   });
 };

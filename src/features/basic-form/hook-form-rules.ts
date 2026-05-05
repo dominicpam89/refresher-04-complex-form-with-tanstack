@@ -18,6 +18,11 @@ const descriptionRules: RegisterOptions<BasicFormType, 'description'> = {
   maxLength: { value: descriptionMax, message: 'Maximum length is 50 characters' },
 };
 
+export const defaultValues: BasicFormType = {
+  title: '',
+  description: '',
+};
+
 export const basicFormRules = {
   title: () => titleRules,
   description: () => descriptionRules,

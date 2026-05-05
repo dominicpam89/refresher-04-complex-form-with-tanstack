@@ -10,6 +10,8 @@ import {
   type BasicFormSchema,
 } from '@/features/basic-form/schema';
 import { zodResolver } from '@hookform/resolvers/zod';
+import CharacterCount from './CharacterCount';
+import { useCreateTodo } from '@/features/basic-form/hooks/createTodo';
 
 export default function BasicFormZod() {
   const {
@@ -17,7 +19,7 @@ export default function BasicFormZod() {
     handleSubmit,
     formState: { errors },
     reset,
-    watch,
+    control,
   } = useForm<BasicFormSchema>({
     defaultValues,
     resolver: zodResolver(basicFormSchema),
@@ -26,12 +28,10 @@ export default function BasicFormZod() {
   });
   const titleProps = register('title');
   const descriptionProps = register('description');
+  const { mutate, isPending } = useCreateTodo();
   const onSubmit = handleSubmit(({ title, description }) => {
-    console.log('Title:', title);
-    console.log('Description:', description);
+    mutate({ title, description });
   });
-  const valueTitle = watch('title');
-  const valueDescription = watch('description');
   return (
     <form id="basic-form-with-zod" className="w-full flex flex-col gap-4" onSubmit={onSubmit}>
       <Field>
@@ -41,11 +41,14 @@ export default function BasicFormZod() {
             id="title"
             placeholder="Title of Todo"
             maxLength={basicFormLength.title.max}
+            disabled={isPending}
             {...titleProps}
           />
-          <div className="absolute z-10 top-0 right-0 mr-2 mt-2 opacity-50">
-            {valueTitle?.length || 0}/{basicFormLength.title.max}
-          </div>
+          <CharacterCount<BasicFormSchema>
+            control={control}
+            name="title"
+            maxChar={basicFormLength.title.max}
+          />
         </div>
         {errors.title && <FieldError>{errors.title.message}</FieldError>}
       </Field>
@@ -56,19 +59,28 @@ export default function BasicFormZod() {
             id="description"
             placeholder="Description of todo"
             maxLength={basicFormLength.description.max}
+            disabled={isPending}
             {...descriptionProps}
           />
-          <div className="absolute z-10 top-0 right-0 mr-2 mt-2 opacity-50">
-            {valueDescription?.length || 0}/{basicFormLength.description.max}
-          </div>
+          <CharacterCount<BasicFormSchema>
+            control={control}
+            name="description"
+            maxChar={basicFormLength.description.max}
+          />
         </div>
         {errors.description && <FieldError>{errors.description.message}</FieldError>}
       </Field>
       <div aria-label="button-group" className="w-full flex items-center gap-2">
-        <Button type="reset" variant="outline" className="w-1/2" onClick={() => reset()}>
+        <Button
+          type="reset"
+          variant="outline"
+          className="w-1/2"
+          onClick={() => reset()}
+          disabled={isPending}
+        >
           Reset Field
         </Button>
-        <Button type="submit" className="w-1/2">
+        <Button type="submit" className="w-1/2" disabled={isPending}>
           Submit
         </Button>
       </div>
