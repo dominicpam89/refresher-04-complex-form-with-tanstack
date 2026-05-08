@@ -4,7 +4,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
 import type { Todo } from '@/types/todo.type';
-import type { TodoCreateSchema } from '@/features/todos/schemas/todo-create.schema';
+import type { TodoCreateSchema } from '@/features/forms/schemas/todo.schema';
 import { useForm } from '@tanstack/react-form';
 
 interface TodoCreateCardProps {
@@ -46,7 +46,7 @@ export default function TodoCreateCard({ onCancel }: TodoCreateCardProps) {
                   id="title"
                   type="text"
                   placeholder="Enter todo title"
-                  aria-invalid={field.state.meta.errors ? true : false}
+                  aria-invalid={isError.title}
                 />
                 <FieldDescription>A short, descriptive title for your task.</FieldDescription>
                 <FieldError errors={field.state.meta.errors} />
@@ -57,13 +57,13 @@ export default function TodoCreateCard({ onCancel }: TodoCreateCardProps) {
           {/* Detail Field */}
           <form.Field name="detail">
             {(field) => (
-              <Field data-invalid={false}>
+              <Field data-invalid={isError.detail}>
                 <FieldLabel htmlFor="detail">Detail</FieldLabel>
                 <Textarea
                   id="detail"
                   placeholder="Enter todo details"
                   rows={4}
-                  aria-invalid={false}
+                  aria-invalid={isError.detail}
                 />
                 <FieldDescription>
                   Provide a detailed description of what needs to be done.
