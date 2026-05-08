@@ -4,6 +4,8 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
 import type { Todo } from '@/types/todo.type';
+import type { TodoCreateSchema } from '@/features/todos/schemas/todo-create.schema';
+import { useForm } from '@tanstack/react-form';
 
 interface TodoCreateCardProps {
   onSuccess?: (todo: Todo) => void;
@@ -11,6 +13,23 @@ interface TodoCreateCardProps {
 }
 
 export default function TodoCreateCard({ onCancel }: TodoCreateCardProps) {
+  const defaultValues: TodoCreateSchema = {
+    title: '',
+    detail: '',
+  };
+  const form = useForm({
+    defaultValues,
+    onSubmit({ value }) {
+      console.log(value);
+    },
+  });
+
+  const { fields: errors } = form.getAllErrors();
+  const isError = {
+    title: errors.title.errors.length > 0,
+    detail: errors.detail.errors.length > 0,
+  };
+
   return (
     <Card className="w-full shadow-md">
       <form>
@@ -19,22 +38,40 @@ export default function TodoCreateCard({ onCancel }: TodoCreateCardProps) {
         </CardHeader>
         <CardContent className="space-y-6">
           {/* Title Field */}
-          <Field data-invalid={false}>
-            <FieldLabel htmlFor="title">Title</FieldLabel>
-            <Input id="title" type="text" placeholder="Enter todo title" aria-invalid={false} />
-            <FieldDescription>A short, descriptive title for your task.</FieldDescription>
-            <FieldError errors={[{ message: 'some errors' }]} />
-          </Field>
+          <form.Field name="title">
+            {(field) => (
+              <Field data-invalid={isError.title}>
+                <FieldLabel htmlFor="title">Title</FieldLabel>
+                <Input
+                  id="title"
+                  type="text"
+                  placeholder="Enter todo title"
+                  aria-invalid={field.state.meta.errors ? true : false}
+                />
+                <FieldDescription>A short, descriptive title for your task.</FieldDescription>
+                <FieldError errors={field.state.meta.errors} />
+              </Field>
+            )}
+          </form.Field>
 
           {/* Detail Field */}
-          <Field data-invalid={false}>
-            <FieldLabel htmlFor="detail">Detail</FieldLabel>
-            <Textarea id="detail" placeholder="Enter todo details" rows={4} aria-invalid={false} />
-            <FieldDescription>
-              Provide a detailed description of what needs to be done.
-            </FieldDescription>
-            <FieldError errors={[{ message: 'some errors' }]} />
-          </Field>
+          <form.Field name="detail">
+            {(field) => (
+              <Field data-invalid={false}>
+                <FieldLabel htmlFor="detail">Detail</FieldLabel>
+                <Textarea
+                  id="detail"
+                  placeholder="Enter todo details"
+                  rows={4}
+                  aria-invalid={false}
+                />
+                <FieldDescription>
+                  Provide a detailed description of what needs to be done.
+                </FieldDescription>
+                <FieldError errors={[{ message: 'some errors' }]} />
+              </Field>
+            )}
+          </form.Field>
         </CardContent>
         <CardFooter className="flex justify-end gap-2">
           {onCancel ? (
