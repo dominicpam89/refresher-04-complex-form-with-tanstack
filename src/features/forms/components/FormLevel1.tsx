@@ -4,7 +4,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
 import type { Todo } from '@/types/todo.type';
-import type { TodoCreateSchema } from '@/features/forms/schemas/todo.schema';
+import { type TodoCreateSchema } from '@/features/forms/schemas/todo.schema';
 import { useForm } from '@tanstack/react-form';
 import FormContainer from './FormContainer';
 
@@ -21,14 +21,20 @@ export default function FormLevel1({ onCancel, visible }: FormLevelProps) {
   };
   const form = useForm({
     defaultValues,
-    onSubmit({ value }) {
+    async onSubmit({ value }) {
       console.log(value);
     },
   });
 
   return (
     <FormContainer visible={visible}>
-      <form>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          form.handleSubmit();
+        }}
+      >
         <CardHeader>
           <CardTitle>Create New Todo</CardTitle>
         </CardHeader>
@@ -39,7 +45,14 @@ export default function FormLevel1({ onCancel, visible }: FormLevelProps) {
               return (
                 <Field>
                   <FieldLabel htmlFor="title">Title</FieldLabel>
-                  <Input id="title" type="text" placeholder="Enter todo title" />
+                  <Input
+                    id="title"
+                    type="text"
+                    placeholder="Enter todo title"
+                    value={field.state.value}
+                    onBlur={field.handleBlur}
+                    onChange={(e) => field.handleChange(e.target.value)}
+                  />
                   <FieldDescription>A short, descriptive title for your task.</FieldDescription>
                   <FieldError>Some Errors</FieldError>
                 </Field>
@@ -52,7 +65,14 @@ export default function FormLevel1({ onCancel, visible }: FormLevelProps) {
             {(field) => (
               <Field>
                 <FieldLabel htmlFor="detail">Detail</FieldLabel>
-                <Textarea id="detail" placeholder="Enter todo details" rows={4} />
+                <Textarea
+                  id="detail"
+                  placeholder="Enter todo details"
+                  rows={4}
+                  value={field.state.value}
+                  onBlur={field.handleBlur}
+                  onChange={(e) => field.handleChange(e.target.value)}
+                />
                 <FieldDescription>
                   Provide a detailed description of what needs to be done.
                 </FieldDescription>
@@ -71,9 +91,15 @@ export default function FormLevel1({ onCancel, visible }: FormLevelProps) {
               Reset
             </Button>
           )}
-          <Button type="submit" disabled={false}>
-            Create
-          </Button>
+          <form.Subscribe selector={(state) => [state.canSubmit, state.isSubmitting]}>
+            {([canSubmit, isSubmitting]) => {
+              return (
+                <Button type="submit" disabled={!canSubmit}>
+                  {isSubmitting ? 'is creating...' : 'Create'}
+                </Button>
+              );
+            }}
+          </form.Subscribe>
         </CardFooter>
       </form>
     </FormContainer>
