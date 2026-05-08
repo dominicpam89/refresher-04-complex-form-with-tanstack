@@ -1,19 +1,21 @@
 import LayoutCommon from '@/pages/LayoutCommon';
 import PageHome from '@/pages/PageHome';
+import PageTodo from '@/pages/todos/PageTodo';
+import PageTodoCreate from '@/pages/todos/PageTodoCreate';
+import PageTodoEdit from '@/pages/todos/PageTodoEdit';
+import PageTodos from '@/pages/todos/PageTodos';
 import { createBrowserRouter } from 'react-router';
-import PageFormBasic from '@/pages/PageFormBasic';
-import PageFormSemiComplex from '@/pages/PageFormSemiComplex';
 
 export const router = createBrowserRouter([
   { path: '/', Component: PageHome },
   {
-    path: '/basic-form',
+    path: '/todos',
     Component: LayoutCommon,
-    children: [{ index: true, Component: PageFormBasic }],
-  },
-  {
-    path: '/semi-complex-form',
-    Component: LayoutCommon,
-    children: [{ index: true, Component: PageFormSemiComplex }],
+    children: [
+      { index: true, Component: PageTodos },
+      { path: 'create', Component: PageTodoCreate },
+      { path: ':id', Component: PageTodo },
+      { path: ':id/edit', Component: PageTodoEdit },
+    ],
   },
 ]);
