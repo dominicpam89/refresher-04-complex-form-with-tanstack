@@ -1,11 +1,5 @@
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-import {
-  Field,
-  FieldContent,
-  FieldLabel,
-  FieldDescription,
-  FieldError,
-} from '@/components/ui/field';
+import { Field, FieldLabel, FieldDescription, FieldError } from '@/components/ui/field';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
@@ -18,7 +12,7 @@ interface TodoCreateCardProps {
 
 export default function TodoCreateCard({ onCancel }: TodoCreateCardProps) {
   return (
-    <Card className="w-full max-w-md shadow-md">
+    <Card className="w-full shadow-md">
       <form>
         <CardHeader>
           <CardTitle>Create New Todo</CardTitle>
@@ -27,34 +21,29 @@ export default function TodoCreateCard({ onCancel }: TodoCreateCardProps) {
           {/* Title Field */}
           <Field data-invalid={false}>
             <FieldLabel htmlFor="title">Title</FieldLabel>
-            <FieldContent>
-              <Input id="title" type="text" placeholder="Enter todo title" aria-invalid={false} />
-              <FieldDescription>A short, descriptive title for your task.</FieldDescription>
-              <FieldError errors={[{ message: 'some errors' }]} />
-            </FieldContent>
+            <Input id="title" type="text" placeholder="Enter todo title" aria-invalid={false} />
+            <FieldDescription>A short, descriptive title for your task.</FieldDescription>
+            <FieldError errors={[{ message: 'some errors' }]} />
           </Field>
 
           {/* Detail Field */}
           <Field data-invalid={false}>
             <FieldLabel htmlFor="detail">Detail</FieldLabel>
-            <FieldContent>
-              <Textarea
-                id="detail"
-                placeholder="Enter todo details"
-                rows={4}
-                aria-invalid={false}
-              />
-              <FieldDescription>
-                Provide a detailed description of what needs to be done.
-              </FieldDescription>
-              <FieldError errors={[{ message: 'some errors' }]} />
-            </FieldContent>
+            <Textarea id="detail" placeholder="Enter todo details" rows={4} aria-invalid={false} />
+            <FieldDescription>
+              Provide a detailed description of what needs to be done.
+            </FieldDescription>
+            <FieldError errors={[{ message: 'some errors' }]} />
           </Field>
         </CardContent>
         <CardFooter className="flex justify-end gap-2">
-          {onCancel && (
+          {onCancel ? (
             <Button type="button" variant="outline" onClick={onCancel}>
               Cancel
+            </Button>
+          ) : (
+            <Button type="button" variant="outline" onClick={() => {}}>
+              Reset
             </Button>
           )}
           <Button type="submit" disabled={false}>
