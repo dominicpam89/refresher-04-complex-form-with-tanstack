@@ -16,7 +16,7 @@ export function generateRandomString() {
   return result;
 }
 
-export async function delay(t: number = 2000) {
+export async function delay(t: number = 1200) {
   return new Promise<boolean>((resolve) => {
     setTimeout(() => resolve(true), t);
   });
