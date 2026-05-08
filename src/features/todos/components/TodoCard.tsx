@@ -1,4 +1,11 @@
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
 import { Button } from '@/components/ui/button'; // assuming you have a Button component
 import type { Todo } from '@/types/todo.type';
 
@@ -21,14 +28,14 @@ export default function TodoCard({ todo, onEdit, onDelete }: TodoCardProps) {
     <Card className="w-full max-w-md shadow-md">
       <CardHeader>
         <CardTitle className="text-xl font-bold">{title}</CardTitle>
-      </CardHeader>
-      <CardContent>
-        <p className="text-gray-700 dark:text-gray-300 whitespace-pre-wrap">{detail}</p>
-        <div className="mt-4 text-xs text-gray-500 space-y-1">
+        <CardDescription className="mt-4 text-xs text-gray-500 space-y-1">
           <p>Created: {formatDate(date.created)}</p>
           {date.modified && <p>Modified: {formatDate(date.modified)}</p>}
           {date.ended && <p>Ended: {formatDate(date.ended)}</p>}
-        </div>
+        </CardDescription>
+      </CardHeader>
+      <CardContent>
+        <p className="text-gray-700 dark:text-gray-300 whitespace-pre-wrap">{detail}</p>
       </CardContent>
       <CardFooter className="flex justify-end gap-2">
         {onEdit && (

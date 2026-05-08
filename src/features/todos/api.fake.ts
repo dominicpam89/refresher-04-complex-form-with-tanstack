@@ -67,3 +67,8 @@ export const deleteTodo = async (id: number): Promise<Todo> => {
   fakeTodos.splice(index, 1);
   return deletedTodo;
 };
+
+export const queryKeys = {
+  all: ['todos'],
+  list: (id: number) => [...queryKeys.all, id],
+};
