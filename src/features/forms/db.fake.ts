@@ -1,4 +1,5 @@
 import type { Todo } from '@/types/todo.type';
+import type { AuthorSchema } from '@/features/forms/schemas/author.schema';
 
 export const fakeTodos: Todo[] = [
   {
@@ -30,5 +31,62 @@ export const fakeTodos: Todo[] = [
       modified: '',
       ended: '',
     },
+  },
+];
+
+export const fakeAuthors: AuthorSchema[] = [
+  {
+    name: {
+      firstName: 'First',
+      middleName: 'Middle',
+      lastName: 'Last',
+    },
+    email: 'firstmiddlelast@example.com',
+    username: 'testing123',
+  },
+  {
+    name: {
+      firstName: 'John',
+      middleName: 'Michael',
+      lastName: 'Doe',
+    },
+    email: 'john.doe@example.com',
+    username: 'johndoe123',
+  },
+  {
+    name: {
+      firstName: 'Jane',
+      // no middleName
+      lastName: 'Smith',
+    },
+    email: 'jane_smith@example.com',
+    username: 'janesmith_dev',
+  },
+  {
+    name: {
+      firstName: 'Emilia',
+      middleName: 'Rose',
+      lastName: 'Johnson',
+    },
+    email: 'emilia.johnson@test.org',
+    username: 'emilia_codes',
+  },
+  {
+    name: {
+      firstName: 'Carlos',
+      // no middleName
+      lastName: 'Martinez',
+    },
+    email: 'carlos.martinez@web.net',
+    username: 'carlitos89',
+  },
+  {
+    name: {
+      firstName: 'Aisha',
+      middleName: 'Fatima',
+      lastName: 'Khan',
+    },
+    email: 'aisha.khan@company.co',
+    username: 'aisha_the_dev',
   },
 ];
