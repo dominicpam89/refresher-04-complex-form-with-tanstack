@@ -4,6 +4,8 @@ import { useSearchParams } from 'react-router';
 import { formLevels, type FormLevel } from '@/features/forms/utils';
 import FormLevel1 from '@/features/forms/components/FormLevel1';
 import LevelSelect from '@/features/forms/components/LevelSelect';
+import FormLevel2 from '@/features/forms/components/FormLevel2';
+import FormLevel3 from '@/features/forms/components/FormLevel3';
 
 export default function PageForms() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -28,12 +30,12 @@ export default function PageForms() {
   return (
     <div
       aria-label="page-forms"
-      className="h-screen max-w-lg min-w-xs mx-auto flex flex-col gap-4 justify-center items-center"
+      className="relative p-6 lg:p-12 lg:h-full max-w-lg min-w-xs mx-auto flex flex-col gap-4 justify-center"
     >
       <LevelSelect level={currentLevel} onValueChange={onValueChange} />
-      <div aria-label="form-container" className="w-full">
-        <FormLevel1 visible={currentLevel === '1'} />
-      </div>
+      {currentLevel === '1' && <FormLevel1 />}
+      {currentLevel === '2' && <FormLevel2 />}
+      {currentLevel === '3' && <FormLevel3 />}
     </div>
   );
 }

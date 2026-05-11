@@ -9,12 +9,11 @@ import { useForm } from '@tanstack/react-form';
 import FormContainer from './FormContainer';
 
 interface FormLevelProps {
-  visible: boolean;
   onSuccess?: (todo: Todo) => void;
   onCancel?: () => void;
 }
 
-export default function FormLevel1({ onCancel, visible }: FormLevelProps) {
+export default function FormLevel1({ onCancel }: FormLevelProps) {
   const defaultValues: TodoCreateSchema = {
     title: '',
     detail: '',
@@ -27,7 +26,7 @@ export default function FormLevel1({ onCancel, visible }: FormLevelProps) {
   });
 
   return (
-    <FormContainer visible={visible}>
+    <FormContainer>
       <form
         onSubmit={(e) => {
           e.preventDefault();
