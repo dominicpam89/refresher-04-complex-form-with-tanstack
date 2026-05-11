@@ -1,4 +1,6 @@
 import { z } from 'zod';
+import { fakeAuthors } from '@/features/forms/db.fake';
+import { delay } from '@/lib/utils';
 
 export const authorName = z.object({
   firstName: z
@@ -16,15 +18,37 @@ export const authorName = z.object({
     .max(50, 'Maximum last name is 50 characters'),
 });
 
+export const usernameSchema = z
+  .string()
+  .min(5, 'Username must be at least 5 characters')
+  .max(30, 'Username must be at most 30 characters')
+  .regex(/^[a-z0-9_]+$/, 'Username must be lowercase letters, numbers, or underscores')
+  .transform((val) => val.toLowerCase());
+
+export const isUsernameTaken = async (username: string) => {
+  await delay(2400);
+  const usernames = fakeAuthors.map((author) => author.username);
+  return usernames.includes(username.toLowerCase());
+};
+
+export const usernameExistSchema = z
+  .string()
+  .transform((val) => {
+    return val.toLowerCase();
+  })
+  .superRefine(async (val, ctx) => {
+    if (await isUsernameTaken(val)) {
+      ctx.addIssue({
+        code: 'custom',
+        message: 'username is taken',
+      });
+    }
+  });
+
 export const authorSchema = z.object({
   name: authorName,
   email: z.email(),
-  username: z
-    .string()
-    .min(5, 'Username must be at least 5 characters')
-    .max(30, 'Username must be at most 30 characters')
-    .regex(/^[a-zA-Z0-9_]+$/, 'Username must be lowercase letters, numbers, or underscores')
-    .transform((val) => val.toLowerCase()),
+  username: usernameSchema,
 });
 
 export type AuthorSchema = z.infer<typeof authorSchema>;
