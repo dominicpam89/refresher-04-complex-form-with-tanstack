@@ -6,6 +6,7 @@ import FormLevel1 from '@/features/forms/components/FormLevel1';
 import LevelSelect from '@/features/forms/components/LevelSelect';
 import FormLevel2 from '@/features/forms/components/FormLevel2';
 import FormLevel3 from '@/features/forms/components/FormLevel3';
+import FormLevel4 from '@/features/forms/components/FormLevel4';
 
 export default function PageForms() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -36,6 +37,7 @@ export default function PageForms() {
       {currentLevel === '1' && <FormLevel1 />}
       {currentLevel === '2' && <FormLevel2 />}
       {currentLevel === '3' && <FormLevel3 />}
+      {currentLevel === '4' && <FormLevel4 />}
     </div>
   );
 }
