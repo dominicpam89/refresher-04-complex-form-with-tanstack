@@ -90,3 +90,22 @@ export const fakeAuthors: AuthorSchema[] = [
     username: 'aisha_the_dev',
   },
 ];
+
+const phoneCountryCodes = {
+  US: '+1',
+  GB: '+44',
+  DE: '+49',
+  FR: '+33',
+  IT: '+39',
+  ES: '+34',
+  JP: '+81',
+  CN: '+86',
+  IN: '+91',
+  BR: '+55',
+  AU: '+61',
+  CA: '+1', // same as US
+  // ... more
+} as const;
+type PhoneCountryCode = typeof phoneCountryCodes;
+export type CountryDialCode = PhoneCountryCode[keyof PhoneCountryCode];
+export const validDialCodes = [...new Set(Object.values(phoneCountryCodes))];

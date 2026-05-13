@@ -2,8 +2,10 @@ import { Input } from '@/components/ui/input';
 import FormWrapper from './FormWrapper';
 import { Field, FieldGroup, FieldLabel, FieldDescription, FieldError } from '@/components/ui/field';
 import { Button } from '@/components/ui/button';
+import { useForm } from '@tanstack/react-form';
 
 export default function FormLevel4() {
+  const form = useForm({});
   return (
     <FormWrapper
       formProps={{}}
