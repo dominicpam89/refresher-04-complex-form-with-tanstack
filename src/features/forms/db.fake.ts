@@ -106,6 +106,7 @@ const phoneCountryCodes = {
   CA: '+1', // same as US
   // ... more
 } as const;
-type PhoneCountryCode = typeof phoneCountryCodes;
-export type CountryDialCode = PhoneCountryCode[keyof PhoneCountryCode];
+
+export type CountryDialCode = (typeof phoneCountryCodes)[keyof typeof phoneCountryCodes];
+
 export const validDialCodes = [...new Set(Object.values(phoneCountryCodes))];

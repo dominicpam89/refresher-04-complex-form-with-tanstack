@@ -41,7 +41,7 @@ const phoneNumber = z.object({
 const isEmailExist = async (email: string, t: number = 1800) => {
   await delay(t);
   const emailList = Object.values(fakeAuthors).map((author) => author.email);
-  return emailList.includes(email);
+  return emailList.includes(email) ? { message: 'Email is already exist' } : undefined;
 };
 
 const registerSchema = z.object({
