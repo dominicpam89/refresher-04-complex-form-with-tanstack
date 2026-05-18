@@ -1,5 +1,5 @@
 import { delay } from '@/lib/utils';
-import { fakeTodos } from './db.fake';
+import { fakeAuthors, fakeTodos } from './db.fake';
 import type { Todo, TodoCreate, TodoUpdate } from '@/types/todo.type';
 
 // GET all todos
@@ -71,4 +71,16 @@ export const deleteTodo = async (id: number): Promise<Todo> => {
 export const queryKeys = {
   all: ['todos'],
   list: (id: number) => [...queryKeys.all, id],
+};
+
+export const getAuthor = async (username: string = 'testing123') => {
+  await delay();
+  const user = fakeAuthors.find((author) => author.username === username);
+  if (!user) throw new Error('user not found');
+  return user;
+};
+
+export const queryAuthorKeys = {
+  all: ['authors'],
+  byUsername: (username: string) => [...queryAuthorKeys.all, username],
 };

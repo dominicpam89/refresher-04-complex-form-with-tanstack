@@ -26,7 +26,7 @@ export const usernameSchema = z
   .transform((val) => val.toLowerCase());
 
 export const isUsernameTaken = async (username: string) => {
-  await delay(2400);
+  await delay();
   const usernames = fakeAuthors.map((author) => author.username);
   return usernames.includes(username.toLowerCase());
 };

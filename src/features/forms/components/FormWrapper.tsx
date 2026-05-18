@@ -28,7 +28,7 @@ export default function FormWrapper({
     <Card className={cn('w-full shadow-md my-0 transition-all duration-500 ease-in-out')}>
       <form {...formProps}>
         <CardHeader className="mb-8">
-          <CardTitle className="text-xl font-bold text-primary">{formTitle}</CardTitle>
+          <CardTitle className="text-2xl font-bold text-primary">{formTitle}</CardTitle>
           {formDescription && <CardDescription>{formDescription}</CardDescription>}
         </CardHeader>
         <CardContent className="space-y-6">{children}</CardContent>
