@@ -1,4 +1,10 @@
-import { CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import {
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
 import {
   Field,
   FieldSet,
@@ -57,8 +63,12 @@ export default function FormLevel3({ onCancel }: FormLevelProps) {
           form.handleSubmit();
         }}
       >
-        <CardHeader>
+        <CardHeader className="mb-6">
           <CardTitle className="text-2xl font-bold mb-4">Create New Author</CardTitle>
+          <CardDescription>
+            <p>What's in this form level 3?</p>
+            <p className="font-extrabold text-destructive">Form Level Validation with Zod</p>
+          </CardDescription>
         </CardHeader>
         <CardContent className="space-y-6">
           {/* Name Field Group */}

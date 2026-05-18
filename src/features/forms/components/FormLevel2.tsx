@@ -1,4 +1,10 @@
-import { CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import {
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
 import { Field, FieldLabel, FieldDescription, FieldError } from '@/components/ui/field';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -38,8 +44,12 @@ export default function FormLevel2({ onCancel }: FormLevelProps) {
           form.handleSubmit();
         }}
       >
-        <CardHeader>
-          <CardTitle>Create New Todo</CardTitle>
+        <CardHeader className="mb-4">
+          <CardTitle>Form Level 2</CardTitle>
+          <CardDescription>
+            <p>What's in this form level 2?</p>
+            <p className="font-extrabold text-destructive">Field Level Validation</p>
+          </CardDescription>
         </CardHeader>
         <CardContent className="space-y-6">
           {/* Title Field */}

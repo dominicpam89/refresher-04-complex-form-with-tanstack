@@ -1,4 +1,10 @@
-import { CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import {
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
 import { Field, FieldLabel, FieldDescription, FieldError } from '@/components/ui/field';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -34,8 +40,9 @@ export default function FormLevel1({ onCancel }: FormLevelProps) {
           form.handleSubmit();
         }}
       >
-        <CardHeader>
-          <CardTitle>Create New Todo</CardTitle>
+        <CardHeader className="mb-4">
+          <CardTitle>Form Level 1</CardTitle>
+          <CardDescription>First Tanstack Form</CardDescription>
         </CardHeader>
         <CardContent className="space-y-6">
           {/* Title Field */}
