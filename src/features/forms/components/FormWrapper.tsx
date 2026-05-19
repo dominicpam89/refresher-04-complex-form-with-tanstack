@@ -31,7 +31,7 @@ export default function FormWrapper({
           <CardTitle className="text-2xl font-bold text-primary">{formTitle}</CardTitle>
           {formDescription && <CardDescription>{formDescription}</CardDescription>}
         </CardHeader>
-        <CardContent className="space-y-6">{children}</CardContent>
+        <CardContent className="space-y-6 mb-4">{children}</CardContent>
         <CardFooter className="flex justify-end gap-2">{footer}</CardFooter>
       </form>
     </Card>

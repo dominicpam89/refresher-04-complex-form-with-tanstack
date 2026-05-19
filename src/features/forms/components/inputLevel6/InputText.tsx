@@ -1,4 +1,4 @@
-import { Field, FieldDescription, FieldError, FieldLabel } from '@/components/ui/field';
+import { Field, FieldDescription, FieldLabel } from '@/components/ui/field';
 import { Input } from '@/components/ui/input';
 import type { ComponentProps } from 'react';
 import { useFieldContext } from '@/features/forms/context/form.context';
@@ -32,7 +32,6 @@ export default function InputText({
         {...inputProps}
       />
       {description && <FieldDescription>{description}</FieldDescription>}
-      <FieldError errors={field.state.meta.errors} />
     </Field>
   );
 }

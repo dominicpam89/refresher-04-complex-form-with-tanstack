@@ -8,6 +8,7 @@ import FormLevel2 from '@/features/forms/components/FormLevel2';
 import FormLevel3 from '@/features/forms/components/FormLevel3';
 import FormLevel4 from '@/features/forms/components/FormLevel4';
 import FormLevel5 from '@/features/forms/components/FormLevel5';
+import FormLevel6 from '@/features/forms/components/FormLevel6';
 
 export default function PageForms() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -32,7 +33,7 @@ export default function PageForms() {
   return (
     <div
       aria-label="page-forms"
-      className="relative p-6 lg:p-12 lg:h-full max-w-lg min-w-xs mx-auto flex flex-col gap-4 justify-center"
+      className="relative p-6 lg:p-12 lg:h-full max-w-xl min-w-xs mx-auto flex flex-col gap-4 justify-center"
     >
       <LevelSelect level={currentLevel} onValueChange={onValueChange} />
       {currentLevel === '1' && <FormLevel1 />}
@@ -40,6 +41,7 @@ export default function PageForms() {
       {currentLevel === '3' && <FormLevel3 />}
       {currentLevel === '4' && <FormLevel4 />}
       {currentLevel === '5' && <FormLevel5 />}
+      {currentLevel === '6' && <FormLevel6 />}
     </div>
   );
 }

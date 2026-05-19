@@ -22,7 +22,7 @@ const { useAppForm } = createFormHook({
 });
 
 export default function FormLevel5() {
-  const { data, error, isError, isLoading } = useGetAuthor('johndoe123');
+  const { data } = useGetAuthor('johndoe123');
 
   const defaultValues: AuthorSchema = {
     name: {
