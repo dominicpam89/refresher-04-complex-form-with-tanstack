@@ -2,7 +2,7 @@ import InputText from '@/features/forms/components/inputs2/InputText';
 import InputTextGroup from './inputs2/InputTextGroup';
 import FormWrapper from './FormWrapper';
 import { Button } from '@/components/ui/button';
-import { FieldGroup, FieldSeparator } from '@/components/ui/field';
+import { FieldGroup } from '@/components/ui/field';
 import { formContext, fieldContext } from '@/features/forms/context/form.context';
 import { createFormHook } from '@tanstack/react-form';
 import type { AuthorSchema } from '@/features/forms/schemas/author.schema';
