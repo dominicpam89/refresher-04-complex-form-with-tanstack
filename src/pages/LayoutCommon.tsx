@@ -1,11 +1,10 @@
 import { Outlet } from 'react-router';
+import Header from '@/features/forms/components/Header';
 
 export default function LayoutCommon() {
   return (
     <>
-      <header>
-        <></>
-      </header>
+      <Header />
       <main>
         <Outlet />
       </main>

@@ -6,8 +6,27 @@ import FeaturesSection from '@/components/homepage/Features';
 import TechStackSection from '@/components/homepage/TechStackSection';
 import CTASection from '@/components/homepage/CTASection';
 import ScrollToTopButton from '@/components/homepage/ScrollToTopButton';
+import { useLocalStorage } from '@/hooks/useLocalStorage';
+import { useEffect } from 'react';
 
 export default function PageHome() {
+  const [lastLevel, , removeLastLevel] = useLocalStorage<string | null>({
+    key: 'lastFormLevel',
+    initialValue: null,
+  });
+
+  // Scroll to the previously selected form level card
+  useEffect(() => {
+    if (lastLevel) {
+      const targetCard = document.querySelector(`[data-level="${lastLevel}"]`);
+      if (targetCard) {
+        targetCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+      // Clear the stored level after scrolling (optional)
+      removeLastLevel();
+    }
+  }, [lastLevel, removeLastLevel]);
+
   const features = [
     {
       level: '1',

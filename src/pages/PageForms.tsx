@@ -9,10 +9,23 @@ import FormLevel3 from '@/features/forms/components/FormLevel3';
 import FormLevel4 from '@/features/forms/components/FormLevel4';
 import FormLevel5 from '@/features/forms/components/FormLevel5';
 import FormLevel6 from '@/features/forms/components/FormLevel6';
+import { useLocalStorage } from '@/hooks/useLocalStorage';
 
 export default function PageForms() {
   const [searchParams, setSearchParams] = useSearchParams();
   const currentLevel = searchParams.get('level') as FormLevel | null;
+
+  const [, setLastFormLevel] = useLocalStorage<string | null>({
+    key: 'lastFormLevel',
+    initialValue: null,
+  });
+
+  // Store current level in localStorage whenever it changes
+  useEffect(() => {
+    if (currentLevel) {
+      setLastFormLevel(currentLevel);
+    }
+  }, [currentLevel, setLastFormLevel]);
 
   // Validate and set default level if missing or invalid
   useEffect(() => {
@@ -22,7 +35,6 @@ export default function PageForms() {
     }
   }, [currentLevel, setSearchParams]);
 
-  // Memoized handler to avoid recreating function on every render
   const onValueChange = useCallback(
     (level: FormLevel) => {
       setSearchParams({ level });

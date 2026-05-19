@@ -77,6 +77,7 @@ export default function FeaturesSection({ features }: FeaturesSectionProps) {
           {features.map((feature) => (
             <motion.div
               key={feature.level}
+              data-level={feature.level}
               variants={cardVariants}
               whileHover={{ y: -8, transition: { duration: 0.2 } }}
               onClick={() => handleCardClick(feature.level)}
