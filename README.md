@@ -25,43 +25,45 @@ A progressive demo showcasing advanced form patterns with **TanStack Form**, **Z
 
 ## Project Structure
 
+```
 refresher-04-complex-form-with-tanstack/
-├── .vscode/ # VS Code settings and recommended extensions
-├── public/ # Static assets (favicon, etc.)
+├── .vscode/
+├── public/
 ├── src/
-│ ├── components/
-│ │ ├── homepage/ # Homepage sections (Hero, Features, CTA, etc.)
-│ │ ├── ui/ # shadcn/ui primitives (button, card, input, select, etc.)
-│ │ ├── inputs/ # Basic input components (InputText, InputPassword)
-│ │ ├── Loading.tsx
-│ │ ├── ThemeToggle.tsx
-│ │ └── ErrorDisplay.tsx
-│ ├── context/ # Theme context provider
-│ ├── features/
-│ │ └── forms/
-│ │ ├── api.fake.ts # Mock API (todos, authors)
-│ │ ├── db.fake.ts # Fake data stores
-│ │ ├── utils.ts # Form level constants
-│ │ ├── components/ # Form level 1‑6, wrappers, LevelSelect, TodoCard
-│ │ ├── context/ # TanStack Form hook contexts
-│ │ ├── hooks/ # useGetAuthor, useGetTodos, useAnimate
-│ │ ├── schemas/ # Zod schemas (author, register, skill, todo)
-│ │ └── inputs/ & inputs2/ & inputLevel6/ # Reusable form field components
-│ ├── hooks/ # Global hooks (useLocalStorage)
-│ ├── lib/ # Utilities (cn, delay, router, query client)
-│ ├── pages/ # PageHome, PageForms, LayoutCommon
-│ ├── types/ # Global type definitions
-│ ├── App.tsx
-│ ├── main.tsx
-│ └── index.css
+│   ├── components/
+│   │   ├── homepage/
+│   │   ├── ui/
+│   │   ├── inputs/
+│   │   ├── Loading.tsx
+│   │   ├── ThemeToggle.tsx
+│   │   └── ErrorDisplay.tsx
+│   ├── context/
+│   ├── features/
+│   │   └── forms/
+│   │       ├── api.fake.ts
+│   │       ├── db.fake.ts
+│   │       ├── utils.ts
+│   │       ├── components/
+│   │       ├── context/
+│   │       ├── hooks/
+│   │       ├── schemas/
+│   │       └── inputs/ & inputs2/ & inputLevel6/
+│   ├── hooks/
+│   ├── lib/
+│   ├── pages/
+│   ├── types/
+│   ├── App.tsx
+│   ├── main.tsx
+│   └── index.css
 ├── .eslint.config.js
 ├── .prettierrc
-├── components.json # shadcn configuration
+├── components.json
 ├── index.html
 ├── package.json
 ├── tsconfig.json
 ├── vite.config.ts
 └── README.md
+```
 
 ## Quick Start
 
